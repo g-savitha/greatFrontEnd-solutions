@@ -2,16 +2,18 @@ export default function dropRightWhile<T>(
   array: Array<T>,
   predicate: (value: T, index: number, array: Array<T>) => boolean,
 ): Array<T> {
-  const result : Array<T> = [];
-  for(let i = 0; i < array.length; i++){
+  let lastIdx = 0;
+
+  for(let i = array.length-1; i>=0; i--){
     if(!predicate(array[i], i, array)){
-      result.push(array[i])
+      lastIdx = i + 1;
+      break;
     }
   }
-  return result;
+  return array.slice(0,lastIdx)
 }
 
-//using slice()
+//Approach 2
 
 export default function dropRightWhile<T>(
   array: Array<T>,
